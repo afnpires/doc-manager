@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Add Document Type</h1>
-    <form:form method="POST" action="/document-type/add">
+    <form:form method="POST" action="/document-types/add">
         <table>
             <tr>
                 <td><form:label path="name">Name</form:label></td>

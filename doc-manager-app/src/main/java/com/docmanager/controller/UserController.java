@@ -7,6 +7,7 @@ import com.docmanager.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,17 +18,17 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserDao userMapper;
+    private UserDao userDao;
 
     @Autowired
-    private RoleDao roleMapper;
+    private RoleDao roleDao;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(ModelMap model) {
-        List<User> users = userMapper.findAll();
+        List<User> users = userDao.findAll();
         model.addAttribute("name", "Users");
         model.addAttribute("list", users);
-        return "list";
+        return "user/list";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -38,11 +39,18 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(ModelMap model, User user) {
-        Role role = roleMapper.find(1);
+        Role role = roleDao.find(1);
         user.setRole(role);
-        userMapper.insert(user);
+        userDao.insert(user);
         return "redirect:/users/list";
     }
 
-
+    @RequestMapping(value = "/remove/{userId}", method = RequestMethod.POST)
+    public String remove(@PathVariable("userId") int userId) {
+        User user = userDao.find(userId);
+        if (user != null) {
+            userDao.delete(user);
+        }
+        return "redirect:/users/list";
+    }
 }

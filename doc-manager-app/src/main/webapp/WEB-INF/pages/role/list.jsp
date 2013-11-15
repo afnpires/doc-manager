@@ -10,25 +10,17 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Username</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Enabled</th>
-            <th>Registration Date</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="user" items="${list}">
+        <c:forEach var="role" items="${list}">
             <tr>
-                <td>${user.id}</td>
-                <td>${user.username}</td>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.enabled}</td>
-                <td>${user.registrationDate}</td>
+                <td>${role.id}</td>
+                <td>${role.name}</td>
                 <td>
-                    <form id="remove-user" action="/users/remove/${user.id}" method="post">
-                        <a href="javascript:" onclick="document.getElementById('remove-user').submit();">Remove</a>
+                    <form id="remove-form" action="/roles/remove/${role.id}" method="post">
+                        <a href="javascript:" onclick="document.getElementById('remove-form').submit();">Remove</a>
                     </form>
                 </td>
             </tr>

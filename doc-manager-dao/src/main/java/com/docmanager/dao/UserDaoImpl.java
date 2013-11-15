@@ -46,14 +46,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     @Transactional
-    public User update(User user) {
-        return null;
-    }
-
-    @Override
-    @Transactional
     public void delete(User user) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(user);
     }
 
     @Override

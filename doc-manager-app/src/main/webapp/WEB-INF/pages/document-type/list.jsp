@@ -5,7 +5,7 @@
     <title>DocManager</title>
 </head>
 <body>
-    <h1>Users</h1>
+    <h1>Document Types</h1>
     <table>
         <thead>
         <tr>
@@ -14,12 +14,12 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="role" items="${list}">
+        <c:forEach var="documentType" items="${list}">
             <tr>
-                <td>${role.id}</td>
-                <td>${role.name}</td>
+                <td>${documentType.id}</td>
+                <td>${documentType.name}</td>
                 <td>
-                    <form id="remove-form" action="/roles/remove/${role.id}" method="post">
+                    <form id="remove-form" action="/document-types/remove/${role.id}" method="post">
                         <a href="javascript:" onclick="document.getElementById('remove-form').submit();">Remove</a>
                     </form>
                 </td>

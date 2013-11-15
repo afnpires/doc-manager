@@ -1,11 +1,12 @@
 package com.docmanager.api;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jalexmach
- * Date: 14-11-2013
- * Time: 16:27
- * To change this template use File | Settings | File Templates.
- */
-public class DocumentTypeDao {
+import com.docmanager.model.DocumentType;
+
+import java.util.List;
+
+public interface DocumentTypeDao {
+    DocumentType insert(DocumentType documentType);
+    void delete(DocumentType documentType);
+    DocumentType find(int id);
+    List<DocumentType> findAll();
 }

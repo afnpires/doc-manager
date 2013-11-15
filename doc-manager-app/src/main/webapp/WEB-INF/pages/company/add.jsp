@@ -5,12 +5,16 @@
     <title>Doc Manager</title>
 </head>
 <body>
-    <h1>Add Role</h1>
-    <form:form method="POST" action="/roles/add">
+    <h1>Add Company</h1>
+    <form:form method="POST" action="/companies/add">
         <table>
             <tr>
-                <td><form:label path="name">Name</form:label></td>
-                <td><form:input path="name" /></td>
+                <td><form:label path="shortName">Short Name</form:label></td>
+                <td><form:input path="shortName" /></td>
+            </tr>
+            <tr>
+                <td><form:label path="fullName">Full Name</form:label></td>
+                <td><form:input path="fullName" /></td>
             </tr>
             <tr>
                 <td colspan="2">

@@ -16,6 +16,14 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <set>
+                <ref bean="documentTypeFormatter"/>
+            </set>
+        </property>
+    </bean>
+
     <!-- Scan classpath for annotations (eg: @Service, @Repository etc) -->
     <context:component-scan base-package="com.docmanager"/>
 
@@ -50,6 +58,13 @@
     </bean>
 
     <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="10000000" />
+    </bean>
 
     <!-- Activates annotation based transaction management -->
     <tx:annotation-driven transaction-manager="transactionManager"/>

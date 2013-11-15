@@ -27,14 +27,6 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     @Transactional
-    public Role update(Role role) {
-        Session session = sessionFactory.getCurrentSession();
-        session.merge(role);
-        return role;
-    }
-
-    @Override
-    @Transactional
     public void delete(Role role) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(role);
@@ -50,6 +42,7 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
+    @Transactional
     public List<Role> findAll() {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Role");
