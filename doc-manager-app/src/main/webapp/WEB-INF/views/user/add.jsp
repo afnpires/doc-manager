@@ -1,27 +1,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Add User</title>
+    <title><spring:message code="user.title.add" /></title>
 </head>
 <body>
-    <h1>Add User</h1>
+    <h1><spring:message code="user.header.add" /></h1>
     <form:form method="POST" action="/users/add">
         <table>
             <tr>
-                <td><form:label path="username">Username</form:label></td>
+                <td><form:label path="username"><spring:message code="user.field.username" /></form:label></td>
                 <td><form:input path="username" /></td>
             </tr>
             <tr>
-                <td><form:label path="password">Password</form:label></td>
+                <td><form:label path="password"><spring:message code="user.field.password" /></form:label></td>
                 <td><form:password path="password" /></td>
             </tr>
             <tr>
-                <td><form:label path="name">Name</form:label></td>
+                <td><form:label path="name"><spring:message code="user.field.name" /></form:label></td>
                 <td><form:input path="name" /></td>
             </tr>
             <tr>
-                <td><form:label path="email">Email</form:label></td>
+                <td><form:label path="email"><spring:message code="user.field.email" /></form:label></td>
                 <td><form:input path="email" /></td>
             </tr>
             <tr>

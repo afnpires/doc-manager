@@ -27,17 +27,17 @@ public class UserController {
         List<User> users = userMapper.findAll();
         model.addAttribute("name", "Users");
         model.addAttribute("list", users);
-        return "list";
+        return "/user/list";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(ModelMap model) {
         model.addAttribute("command", new User());
-        return "user/add";
+        return "/user/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(ModelMap model, User user) {
+    public String add(User user) {
         Role role = roleMapper.find(1);
         user.setRole(role);
         userMapper.insert(user);
