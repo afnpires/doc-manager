@@ -35,7 +35,7 @@ public class User {
     private boolean enabled;
 
     @OneToOne
-    @JoinColumn(name = "role_id", nullable = false)
+    @JoinColumn(name = "role_id", nullable = true)
     private Role role;
 
     public int getId() {

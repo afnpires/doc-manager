@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +22,8 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
 
     public UserDaoImpl() {
         random = new SecureRandom();
@@ -69,7 +68,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     private void encodePassword(User user) {
-        user.setPassword(passwordEncoder.encodePassword(user.getPassword(), user.getSalt()));
+        //user.setPassword(passwordEncoder.encodePassword(user.getPassword(), user.getSalt()));
     }
 
     private String nextSalt() {

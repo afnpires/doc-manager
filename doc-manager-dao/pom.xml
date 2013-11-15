@@ -21,5 +21,10 @@
             <artifactId>doc-manager-model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>3.2.0.RC2</version>
+        </dependency>
     </dependencies>
 </project>
