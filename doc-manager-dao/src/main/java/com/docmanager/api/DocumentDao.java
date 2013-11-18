@@ -1,11 +1,13 @@
 package com.docmanager.api;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jalexmach
- * Date: 13-11-2013
- * Time: 16:00
- * To change this template use File | Settings | File Templates.
- */
-public class DocumentDao {
+import com.docmanager.model.Document;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+
+public interface DocumentDao {
+    Document insert(Document document, MultipartFile file);
+    void delete(Document document);
+    Document find(int id);
+    List<Document> findAll();
 }
