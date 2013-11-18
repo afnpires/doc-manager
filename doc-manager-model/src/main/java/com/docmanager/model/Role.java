@@ -3,7 +3,7 @@ package com.docmanager.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
 
     @Id

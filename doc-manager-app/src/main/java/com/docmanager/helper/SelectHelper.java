@@ -1,11 +1,12 @@
 package com.docmanager.helper;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jalexmach
- * Date: 14-11-2013
- * Time: 18:14
- * To change this template use File | Settings | File Templates.
- */
+import com.docmanager.model.DocumentType;
+
+import java.util.HashMap;
+import java.util.List;
+
 public class SelectHelper {
+
+
+
 }
