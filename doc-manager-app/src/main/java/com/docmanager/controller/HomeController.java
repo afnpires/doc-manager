@@ -1,6 +1,6 @@
 package com.docmanager.controller;
 
-import com.docmanager.TestForm;
+//import com.docmanager.TestForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -22,23 +22,23 @@ public class HomeController {
         return "home/index";
     }
 
-    @ModelAttribute("formDTO")
-    public TestForm createFormBean() {
-        return new TestForm();
-    }
-
-    @RequestMapping(value = "/", method=RequestMethod.POST)
-    public String submitMessage(@Valid TestForm testForm, BindingResult result,
-                                SessionStatus sessionStatus,
-                                RedirectAttributes redirectAttrs) {
-
-        if (result.hasErrors()) {
-            return "home";
-        }
-        String message = testForm.getMessageFromUser();
-        sessionStatus.setComplete();
-        redirectAttrs.addFlashAttribute("message", message);
-
-        return "redirect:/";
-    }
+//    @ModelAttribute("formDTO")
+//    public TestForm createFormBean() {
+//        return new TestForm();
+//    }
+//
+//    @RequestMapping(value = "/", method=RequestMethod.POST)
+//    public String submitMessage(@Valid TestForm testForm, BindingResult result,
+//                                SessionStatus sessionStatus,
+//                                RedirectAttributes redirectAttrs) {
+//
+//        if (result.hasErrors()) {
+//            return "home";
+//        }
+//        String message = testForm.getMessageFromUser();
+//        sessionStatus.setComplete();
+//        redirectAttrs.addFlashAttribute("message", message);
+//
+//        return "redirect:/";
+//    }
 }
