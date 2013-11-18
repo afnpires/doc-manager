@@ -2,12 +2,15 @@ package com.docmanager.controller;
 
 import com.docmanager.api.DocumentDao;
 import com.docmanager.api.DocumentTypeDao;
+import com.docmanager.editor.DocumentTypeEditor;
 import com.docmanager.model.Document;
 import com.docmanager.model.DocumentType;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +29,11 @@ public class DocumentController {
     @Autowired
     private DocumentTypeDao documentTypeDao;
 
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(DocumentType.class, new DocumentTypeEditor());
+    }
+
     @RequestMapping(value = "/list")
     public String list(ModelMap model) {
         List<Document> documents = documentDao.findAll();
@@ -37,15 +45,15 @@ public class DocumentController {
     public String add(ModelMap model) {
         List<DocumentType> documentTypes = documentTypeDao.findAll();
         model.addAttribute("types", documentTypes);
-        model.addAttribute("command", new Document());
+        Document document = new Document();
+        document.setDocumentType(documentTypes.get(0));
+        model.addAttribute("command", document);
         return "document/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("document") @Valid Document document, @RequestParam("file") MultipartFile file) {
+    public String add(Document document, @RequestParam("file") MultipartFile file) {
         try {
-//            DocumentType documentType1 = documentTypeDao.find(documentType.getId());
-//            document.setDocumentType(documentType1);
             documentDao.insert(document, file);
         } catch(Exception e) {
             e.printStackTrace();
