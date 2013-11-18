@@ -1,17 +1,14 @@
 package com.docmanager.controller;
 
+<<<<<<< HEAD
 
 import com.docmanager.TestForm;
+=======
+>>>>>>> 6957899c56a8d3b3e51847ecc6f9364323990147
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/")
@@ -23,6 +20,7 @@ public class HomeController {
         return "home/index";
     }
 
+<<<<<<< HEAD
     @ModelAttribute("formDTO")
     public TestForm createFormBean() {
         return new TestForm();
@@ -43,4 +41,6 @@ public class HomeController {
         return "redirect:/";
     }
 
+=======
+>>>>>>> 6957899c56a8d3b3e51847ecc6f9364323990147
 }
