@@ -1,9 +1,6 @@
 package com.docmanager.controller;
 
-<<<<<<< HEAD
 //import com.docmanager.TestForm;
-=======
->>>>>>> 6957899c56a8d3b3e51847ecc6f9364323990147
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +16,6 @@ public class HomeController {
         return "home/index";
     }
 
-<<<<<<< HEAD
 //    @ModelAttribute("formDTO")
 //    public TestForm createFormBean() {
 //        return new TestForm();
@@ -39,6 +35,5 @@ public class HomeController {
 //
 //        return "redirect:/";
 //    }
-=======
->>>>>>> 6957899c56a8d3b3e51847ecc6f9364323990147
+
 }
