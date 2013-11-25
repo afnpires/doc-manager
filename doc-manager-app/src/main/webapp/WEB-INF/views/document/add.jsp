@@ -8,22 +8,24 @@
 </head>
 <body>
     <h1><spring:message code="document.header.add" /></h1>
-    <form:form method="POST" action="/documents/add" enctype="multipart/form-data">
+    <form:form method="post" action="/documents/add?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
         <table>
             <tr>
-                <td><form:label path="name"><spring:message code="document.field.name" /></form:label></td>
-                <td><form:input path="name" /></td>
+                <td><label path="name"><spring:message code="document.field.name" /></label></td>
+                <td><input type="text" name="name" /></td>
             </tr>
             <tr>
-                <td><form:label path="documentType"><spring:message code="document.field.document.type" /></form:label></td>
+                <td><label path="documentType"><spring:message code="document.field.document.type" /></label></td>
                 <td>
-                    <form:select path="documentType">
-                        <form:options items="${types}" itemValue="id" itemLabel="name" />
-                    </form:select>
+                    <select name="documentType">
+                        <c:forEach items="${types}" var="type">
+                            <option value="${type.id}">${type.name}</option>
+                        </c:forEach>
+                    </select>
                 </td>
             </tr>
             <tr>
-                <td><form:label path="content"><spring:message code="document.field.file" /></form:label></td>
+                <td><label path="file"><spring:message code="document.field.file" /></label></td>
                 <td><input type="file" name="file" id="file" /></td>
             </tr>
             <tr>
