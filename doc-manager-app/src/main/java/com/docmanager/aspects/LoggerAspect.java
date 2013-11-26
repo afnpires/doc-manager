@@ -14,6 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * User: pserra
@@ -23,11 +29,25 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LoggerAspect {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private final static String FORMAT_LOG_STR = "%s - %s @ TARGET: (%s) %s.%s";
 
-    @Before("execution(public * com.docmanager.controller..*.*(..)")
+    private final Logger log = LoggerFactory.getLogger("LOG");
+
+
+
+    @Before("execution(public * com.docmanager.controller..*.*(..))")
     public void logMethodCall(JoinPoint joinPoint) throws Throwable{
-        log.info("[POINTCUT RUNNING]");
+
+        ServletRequestAttributes t = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+
+        String logStr = String.format(FORMAT_LOG_STR,
+                t.getRequest().getRemoteUser(),
+                t.getRequest().getRequestedSessionId(),
+                t.getRequest().getMethod(),
+                joinPoint.getTarget().getClass().getName(),
+                joinPoint.getSignature().getName());
+
+        log.info(logStr);
     }
 
 }

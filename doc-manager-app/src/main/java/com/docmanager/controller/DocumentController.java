@@ -2,7 +2,6 @@ package com.docmanager.controller;
 
 import com.docmanager.api.DocumentDao;
 import com.docmanager.api.DocumentTypeDao;
-import com.docmanager.dto.FileUploaderDto;
 import com.docmanager.editor.DocumentTypeEditor;
 import com.docmanager.model.Document;
 import com.docmanager.model.DocumentType;
