@@ -36,8 +36,8 @@ CREATE TABLE `docmanager`.`users` (
 	CONSTRAINT `fk_user1`
 		FOREIGN KEY (`role_id`)
 		REFERENCES `docmanager`.`roles` (`id`)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `docmanager`.`document_types`;
@@ -63,10 +63,14 @@ CREATE TABLE `docmanager`.`documents` (
 	CONSTRAINT `fk_document1`
 		FOREIGN KEY (`document_type_id`)
 		REFERENCES `docmanager`.`document_types` (`id`)
-		ON DELETE NO ACTION
-		ON UPDATE NO ACTION)
+		ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 INSERT INTO `docmanager`.`roles` (`name`) VALUES ('ADMIN');
+
+INSERT INTO `docmanager`.`document_types` (`name`) VALUES ('document_type_1');
+
+INSERT INTO `docmanager`.`companies` (`short_name`, `full_name`) VALUES ('comp_1', 'company_1_gmbh');
 
 INSERT INTO `docmanager`.`users` (`username`, `password`, `salt`, `name`, `email`, `registration_date`, `enabled`, `role_id`) VALUES ('jmachado', 'password', 'salt', 'João Machado', 'jalexmach@gmail.com', '2013-11-12', 1, '1');

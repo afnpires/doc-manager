@@ -16,7 +16,7 @@ public class Document {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "document_type_id", nullable = false)
     private DocumentType documentType;
 

@@ -34,7 +34,7 @@ public class User {
     @Column(name = "enabled", nullable = false, unique = true)
     private boolean enabled;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "role_id", nullable = true)
     private Role role;
 
