@@ -6,8 +6,15 @@
     <title><spring:message code="document.title.list" /></title>
 </head>
 <body>
-    <h1><spring:message code="document.header.list" /></h1>
-    <table>
+    <h2><spring:message code="document.header.list" /></h2>
+
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a class="btn" href="/documents/add"><i class="icon-plus"></i> <spring:message code="document.menu.add" /></a>
+        </div>
+    </div>
+    <br>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th><spring:message code="document.table.id" /></th>
@@ -23,7 +30,7 @@
                 <td>${document.contentType}</td>
                 <td><a href="/documents/get/${document.id}">Download</a></td>
                 <td>
-                    <form id="remove-form" action="/documents/remove/${role.id}" method="post">
+                    <form class="remove-form" action="/documents/remove/${role.id}" method="post">
                         <a href="javascript:" onclick="document.getElementById('remove-form').submit();"><spring:message code="table.button.remove" /></a>
                     </form>
                 </td>

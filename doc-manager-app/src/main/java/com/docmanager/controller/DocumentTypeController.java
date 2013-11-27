@@ -22,7 +22,7 @@ public class DocumentTypeController {
     public String list(ModelMap model) {
         List<DocumentType> documentType = documentTypeDao.findAll();
         model.addAttribute("list", documentType);
-        return "role/list";
+        return "document-type/list";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)

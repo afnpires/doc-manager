@@ -38,6 +38,8 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="javascript"></script>
     <![endif]-->
 
+    <link href="/resources/css/main.css" rel="stylesheet" />
+
     <dec:head />
 </head>
 <body>
@@ -70,7 +72,7 @@
                 <li><a href="?lang=fr"><spring:message code="layout.lang.french" /></a></li>
             </ul>
         </div>
-        <p class="pull-right"><spring:message code="main.footer.copyright" /></p>
+        <p class="muted pull-right"><spring:message code="main.footer.copyright" /></p>
     </footer>
 
 </div>

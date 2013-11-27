@@ -6,7 +6,7 @@
     <title><spring:message code="role.title.add" /></title>
 </head>
 <body>
-    <h1><spring:message code="role.header.add" /></h1>
+    <h2><spring:message code="role.header.add" /></h2>
     <form:form method="POST" action="/roles/add">
         <table>
             <tr>

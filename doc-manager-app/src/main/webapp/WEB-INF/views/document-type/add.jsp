@@ -6,7 +6,7 @@
     <title><spring:message code="document.type.title.add" /></title>
 </head>
 <body>
-    <h1><spring:message code="document.type.header.add" /></h1>
+    <h2><spring:message code="document.type.header.add" /></h2>
     <form:form method="POST" action="/document-types/add">
         <table>
             <tr>

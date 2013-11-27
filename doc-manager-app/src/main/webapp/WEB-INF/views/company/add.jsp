@@ -6,7 +6,7 @@
     <title><spring:message code="company.title.add" /></title>
 </head>
 <body>
-    <h1><spring:message code="company.header.add" /></h1>
+    <h2><spring:message code="company.header.add" /></h2>
     <form:form method="POST" action="/companies/add">
         <table>
             <tr>

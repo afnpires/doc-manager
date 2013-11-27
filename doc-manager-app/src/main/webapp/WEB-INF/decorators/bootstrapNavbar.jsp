@@ -6,16 +6,17 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
+
             <a class="brand" href="/"><spring:message code="main.brand" /></a>
             <div class="nav-collapse collapse">
                 <c:if test="${pageContext.request.remoteUser != null}">
                     <c:url var="logoutUrl" value="/logout" />
                     <c:url var="configUrl" value="/config" />
+
+                    <ul class="nav">
+                        <li><a href="/companies/list"><spring:message code="companies.menu.lbl" /></a></li>
+                        <li><a href="/documents/list"><spring:message code="documents.menu.lbl" /></a></li>
+                    </ul>
 
                     <form:form class="navbar-form pull-right" action="${logoutUrl}" method="post">
                         <button class="btn btn-link" type="submit" title="Logout">
@@ -31,6 +32,8 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="disabled"><a>Profile</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/document-types/list"><spring:message code="document.type.menu.lbl" /></a></li>
                                 <li class="divider"></li>
                                 <li><a href="/users/list"><spring:message code="users.menu.lbl" /></a></li>
                                 <li><a href="/roles/list"><spring:message code="roles.menu.lbl" /></a></li>

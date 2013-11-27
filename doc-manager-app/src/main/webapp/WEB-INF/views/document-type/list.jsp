@@ -3,11 +3,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title><spring:message code="document.type.title.list" /></title>
+    <title><spring:message code="document.type.title" /></title>
 </head>
 <body>
-    <h1><spring:message code="document.type.header.list" /></h1>
-    <table>
+    <h2><spring:message code="document.type.header" /></h2>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a class="btn" href="/document-types/add"><i class="icon-plus"></i> <spring:message code="document.type.menu.add" /></a>
+        </div>
+    </div>
+    <br>
+    <table class="table table-hover">
         <thead>
         <tr>
             <th><spring:message code="document.type.table.id" /></th>

@@ -7,7 +7,7 @@
     <title><spring:message code="user.title.add" /></title>
 </head>
 <body>
-    <h1><spring:message code="user.header.add" /></h1>
+    <h2><spring:message code="user.header.add" /></h2>
     <form:form method="post" action="/users/add">
         <table>
             <tr>

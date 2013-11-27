@@ -7,9 +7,6 @@
 <body>
 	<h1><spring:message code="message.welcome" /></h1>
     <ul>
-        <li><a href="companies/list"><spring:message code="companies.menu.list" /></a></li>
-        <li><a href="companies/add"><spring:message code="companies.menu.add" /></a></li>
-        <br />
         <li><a href="document-types/list"><spring:message code="document.type.menu.list" /></a></li>
         <li><a href="document-types/add"><spring:message code="document.type.menu.add" /></a></li>
         <br />
