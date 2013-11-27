@@ -7,7 +7,6 @@
 </head>
 <body>
     <h1><spring:message code="document.header.list" /></h1>
-    <c:if test="{!empty list}">
     <table>
         <thead>
             <tr>
@@ -32,6 +31,5 @@
             </c:forEach>
         </tbody>
     </table>
-    </c:if>
 </body>
 </html>

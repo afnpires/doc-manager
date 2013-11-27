@@ -29,7 +29,7 @@ public class DocumentController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(DocumentType.class, new DocumentTypeEditor());
+        binder.registerCustomEditor(DocumentType.class, new DocumentTypeEditor(documentTypeDao));
     }
 
     @RequestMapping(value = "/list")

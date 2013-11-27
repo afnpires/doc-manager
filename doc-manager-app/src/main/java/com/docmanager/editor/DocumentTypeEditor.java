@@ -8,8 +8,11 @@ import java.beans.PropertyEditorSupport;
 
 public class DocumentTypeEditor extends PropertyEditorSupport {
 
-    @Autowired
     private DocumentTypeDao documentTypeDao;
+
+    public DocumentTypeEditor(DocumentTypeDao documentTypeDao) {
+        this.documentTypeDao = documentTypeDao;
+    }
 
     @Override
     public void setAsText(String text) {
