@@ -6,12 +6,8 @@
 </head>
 <body>
 	<h1><spring:message code="message.welcome" /></h1>
-    <ul>
-        <li><a href="document-types/list"><spring:message code="document.type.menu.list" /></a></li>
-        <li><a href="document-types/add"><spring:message code="document.type.menu.add" /></a></li>
-        <br />
-        <li><a href="documents/list"><spring:message code="document.menu.list" /></a></li>
-        <li><a href="documents/add"><spring:message code="document.menu.add" /></a></li>
-    </ul>
+    <div>
+        <img src="/resources/img/dilbert.strip.11804.gif" />
+    </div>
 </body>
 </html>

@@ -30,11 +30,8 @@
                 <td>${role.name}</td>
                 <td>
                     <form:form id="remove-form" method="post" action="/roles/remove/${role.id}">
-                        <a href="javascript:" onclick="document.getElementById('remove-form').submit();"><spring:message code="table.button.remove" /></a>
+                        <button class="btn btn-link" type="submit" value=""><spring:message code="table.button.remove" /></button>
                     </form:form>
-                    <%--<form id="remove-form" action="/roles/remove/${role.id}" method="post">--%>
-                        <%--<a href="javascript:" onclick="document.getElementById('remove-form').submit();"><spring:message code="table.button.remove" /></a>--%>
-                    <%--</form>--%>
                 </td>
             </tr>
         </c:forEach>

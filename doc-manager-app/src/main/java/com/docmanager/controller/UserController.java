@@ -6,6 +6,8 @@ import com.docmanager.editor.RoleEditor;
 import com.docmanager.model.Role;
 import com.docmanager.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/users")
+@PreAuthorize("hasRole('ADMIN')")
 public class UserController {
 
     @Autowired

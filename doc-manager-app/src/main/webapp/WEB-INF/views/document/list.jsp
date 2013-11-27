@@ -31,7 +31,7 @@
                 <td><a href="/documents/get/${document.id}">Download</a></td>
                 <td>
                     <form class="remove-form" action="/documents/remove/${role.id}" method="post">
-                        <a href="javascript:" onclick="document.getElementById('remove-form').submit();"><spring:message code="table.button.remove" /></a>
+                        <button class="btn btn-link" type="submit" value=""><spring:message code="table.button.remove" /></button>
                     </form>
                 </td>
             </tr>
