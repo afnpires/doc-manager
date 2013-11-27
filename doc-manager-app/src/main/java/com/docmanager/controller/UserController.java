@@ -21,20 +21,20 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserDao userMapper;
+    private UserDao userDao;
 
     @Autowired
-    private RoleDao roleMapper;
+    private RoleDao roleDao;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(Role.class, new RoleEditor());
+        binder.registerCustomEditor(Role.class, new RoleEditor(roleDao));
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(ModelMap model) {
 
-        List<User> users = userMapper.findAll();
+        List<User> users = userDao.findAll();
         model.addAttribute("name", "Users");
         model.addAttribute("list", users);
 
@@ -43,7 +43,7 @@ public class UserController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(ModelMap model) {
-        List<Role> roles = roleMapper.findAll();
+        List<Role> roles = roleDao.findAll();
         model.addAttribute("roles", roles);
         return "/user/add";
     }
@@ -63,7 +63,7 @@ public class UserController {
         user.setEmail(email);
         user.setEnabled(enabled);
         user.setRole(role);
-        userMapper.insert(user);
+        userDao.insert(user);
         return "redirect:/users/list";
     }
 

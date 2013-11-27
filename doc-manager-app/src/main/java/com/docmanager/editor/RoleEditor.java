@@ -2,14 +2,16 @@ package com.docmanager.editor;
 
 import com.docmanager.api.RoleDao;
 import com.docmanager.model.Role;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.beans.PropertyEditorSupport;
 
 public class RoleEditor extends PropertyEditorSupport {
 
-    @Autowired
     private RoleDao roleDao;
+
+    public RoleEditor(RoleDao roleDao) {
+        this.roleDao = roleDao;
+    }
 
     @Override
     public void setAsText(String text) {
