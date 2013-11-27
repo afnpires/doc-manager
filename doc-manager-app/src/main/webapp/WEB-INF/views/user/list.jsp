@@ -8,12 +8,20 @@
 </head>
 <body>
     <h1><spring:message code="user.header.list" /> ${name}</h1>
+
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a class="btn" href="/users/add"><i class="icon-plus"></i> <spring:message code="users.menu.add" /></a>
+        </div>
+    </div>
+    <br>
+
     <ul>
         <c:forEach var="user" items="${list}">
             <li>${user.id} - ${user.username} - ${user.name} - ${user.email}</li>
         </c:forEach>
     </ul>
-    <table>
+    <table class="table table-hover">
         <thead>
         <tr>
             <th><spring:message code="user.table.id" /></th>

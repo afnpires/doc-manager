@@ -31,23 +31,17 @@ public class LoggerAspect {
 
     private final static String FORMAT_LOG_STR = "%s - %s @ TARGET: (%s) %s.%s";
 
-    private final Logger log = LoggerFactory.getLogger("LOG");
-
-
+    private final Logger log = LoggerFactory.getLogger("EXECUTION LOG");
 
     @Before("execution(public * com.docmanager.controller..*.*(..))")
     public void logMethodCall(JoinPoint joinPoint) throws Throwable{
-
         ServletRequestAttributes t = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-
-        String logStr = String.format(FORMAT_LOG_STR,
+        log.info(String.format(FORMAT_LOG_STR,
                 t.getRequest().getRemoteUser(),
                 t.getRequest().getRequestedSessionId(),
                 t.getRequest().getMethod(),
                 joinPoint.getTarget().getClass().getName(),
-                joinPoint.getSignature().getName());
-
-        log.info(logStr);
+                joinPoint.getSignature().getName()));
     }
 
 }

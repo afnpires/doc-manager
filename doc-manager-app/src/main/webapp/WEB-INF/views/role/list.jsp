@@ -9,6 +9,13 @@
 </head>
 <body>
     <h1><spring:message code="role.header.list" /></h1>
+
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a class="btn" href="/roles/add"><i class="icon-plus"></i> <spring:message code="roles.menu.add" /></a>
+        </div>
+    </div>
+    <br>
     <table>
         <thead>
         <tr>
