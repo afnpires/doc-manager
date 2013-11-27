@@ -8,7 +8,7 @@
     <title><spring:message code="role.title.list" /></title>
 </head>
 <body>
-    <h1><spring:message code="role.header.list" /></h1>
+    <h2><spring:message code="role.header.list" /></h2>
 
     <div class="btn-toolbar">
         <div class="btn-group">
@@ -16,7 +16,7 @@
         </div>
     </div>
     <br>
-    <table>
+    <table class="table table-hover">
         <thead>
         <tr>
             <th><spring:message code="role.table.id" /></th>

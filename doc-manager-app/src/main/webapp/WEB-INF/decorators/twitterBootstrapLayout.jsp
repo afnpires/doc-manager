@@ -20,6 +20,15 @@
         .sidebar-nav {
             padding: 9px 0;
         }
+
+        footer div.btn-group{
+            margin-left: 10px;
+        }
+
+        footer ul.dropdown-menu li {
+            font-size: 80%;
+        }
+
     </style>
     <!-- See http://twitter.github.com/bootstrap/scaffolding.html#responsive -->
     <link href="/resources/css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -38,9 +47,9 @@
 <div class="container-fluid">
     <div class="row-fluid">
 
-        <div class="span3">
-            <%@include file="bootstrapMenu.jsp"%>
-        </div>
+        <%--<div class="span3">--%>
+            <%--<%@include file="bootstrapMenu.jsp"%>--%>
+        <%--</div>--%>
 
         <div class="span9">
             <dec:body />
@@ -50,7 +59,18 @@
 
     <hr>
     <footer>
-        <p><spring:message code="main.footer.copyright" /></p>
+        <div class="btn-group pull-right">
+            <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+                <spring:message code="layout.lang" />
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="?lang=de"><spring:message code="layout.lang.deutsch" /></a></li>
+                <li><a href="?lang=en"><spring:message code="layout.lang.english" /></a></li>
+                <li><a href="?lang=fr"><spring:message code="layout.lang.french" /></a></li>
+            </ul>
+        </div>
+        <p class="pull-right"><spring:message code="main.footer.copyright" /></p>
     </footer>
 
 </div>

@@ -2,14 +2,7 @@
 <html>
 <body>
 
-<div class="well sidebar-nav">
-    <ul class="nav nav-list">
-        <li class="nav-header"><spring:message code="layout.lang" /> </li>
-        <li><a href="?lang=de"><spring:message code="layout.lang.deutsch" /></a></li>
-        <li><a href="?lang=en"><spring:message code="layout.lang.english" /></a></li>
-        <li><a href="?lang=fr"><spring:message code="layout.lang.french" /></a></li>
-    </ul>
-</div>
+
 
 </body>
 </html>
