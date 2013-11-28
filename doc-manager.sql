@@ -54,16 +54,12 @@ CREATE TABLE `docmanager`.`document_types` (
 DROP TABLE IF EXISTS `docmanager`.`document_status`;
 
 CREATE TABLE `docmanager`.`document_status` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `value` VARCHAR(45) NOT NULL,
-  `document_type_id` INT NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `document_type_id` int(11) NOT NULL,
+  `value` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `doc_type_fk1_idx` (`document_type_id` ASC),
-  CONSTRAINT `doc_type_fk1`
-    FOREIGN KEY (`document_type_id`)
-    REFERENCES `docmanager`.`document_types` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+  KEY `doc_type_fk_idx` (`document_type_id`),
+  CONSTRAINT `doc_type_fk` FOREIGN KEY (`document_type_id`) REFERENCES `docmanager`.`document_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
 
@@ -86,27 +82,24 @@ CREATE TABLE `docmanager`.`document_fields` (
 DROP TABLE IF EXISTS `docmanager`.`documents`;
 
 CREATE TABLE `docmanager`.`documents` (
-	`id` INT NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(64) NOT NULL,
-	`file_name` VARCHAR(256) NOT NULL,
-	`document_type_id` INT NOT NULL,
-	`content` MEDIUMBLOB NOT NULL,
-	`content_type` VARCHAR(32) NOT NULL,
-	`creation_date` DATETIME NOT NULL,
-	`company_id` INT NOT NULL,
-	PRIMARY KEY(`id`),
-	INDEX `fk_document1` (`document_type_id` ASC),
-	CONSTRAINT `fk_document1`
-		FOREIGN KEY (`document_type_id`)
-		REFERENCES `docmanager`.`document_types` (`id`)
-		ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_document2`
-    FOREIGN KEY (`company_id`)
-    REFERENCES `docmanager`.`companies` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `file_name` varchar(256) NOT NULL,
+  `document_type_id` int(11) NOT NULL,
+  `content` mediumblob NOT NULL,
+  `content_type` varchar(32) NOT NULL,
+  `creation_date` datetime NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `document_status_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_document1` (`document_type_id`),
+  KEY `fk_document2` (`company_id`),
+  KEY `doc_status_fk1_idx` (`document_status_id`),
+  CONSTRAINT `doc_status_fk1` FOREIGN KEY (`document_status_id`) REFERENCES `docmanager`.`document_status` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_document1` FOREIGN KEY (`document_type_id`) REFERENCES `docmanager`.`document_types` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_document2` FOREIGN KEY (`company_id`) REFERENCES `docmanager`.`companies` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB;
+
 
 DROP TABLE IF EXISTS `docmanager`.`field_values`;
 

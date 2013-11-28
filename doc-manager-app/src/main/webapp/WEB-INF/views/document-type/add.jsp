@@ -7,33 +7,46 @@
     <title><spring:message code="document.type.title.add" /></title>
 
     <style>
-        tr.field-hidden {
+        tr.field-hidden, tr.status-hidden {
             display: none;
+        }
+
+        table.table input, table.table select {
+            margin-bottom: 0px !important;
         }
     </style>
 
     <script type="text/javascript">
 
         $(function(){
-            $('form.form-horizontal').submit(function(e){
+            $('table.table').on('click', 'a.new-btn', newField);
+            $('table.table').on('click', 'a.remove-btn', removeField);
+
+            $('form').submit(function(e){
                 $(this).find('.field-tr').each(function(index, elem){
                     var fieldName = "documentFields[" + index + "]";
                     $(elem).find('td input').prop('name', fieldName + '.name');
                     $(elem).find('td select').prop('name', fieldName + '.fieldType');
                 });
+
+                $(this).find('.status-tr').each(function(index, elem){
+                    var fieldName = "documentStatuses[" + index + "]";
+                    $(elem).find('td input').prop('name', fieldName + '.value');
+                });
             });
         });
 
-        function newField(){
-            var field = $('.field-hidden').clone();
-            field.removeClass('field-hidden');
-            field.addClass('field-tr');
+        function newField(e){
+            var parentClss = $(e.target).parents('div.row-fluid')[0].className.replace('row-fluid ', '');
+            var field = $('.' + parentClss + '-hidden').clone();
+            field.removeClass(parentClss + '-hidden');
+            field.addClass(parentClss + '-tr');
 
-            $('table tbody .field-hidden').before(field);
+            $('table tbody .' + parentClss + '-hidden').before(field);
         };
 
         function removeField(e){
-            $(e).parents('tr').remove();
+            $(e.target).parents('tr').remove();
         };
     </script>
 
@@ -52,22 +65,33 @@
             </div>
         </div>
 
-        <div class="row-fluid">
+        <div class="row-fluid status">
             <table class="table">
                 <thead>
                 <tr>
                     <th>Status</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th><input type="text" /></th>
-                </tr>
+                    <c:forEach var="field" items="${documentType.documentFields}">
+                        <tr class="status-tr">
+                            <td><input type="text" value="${field.value}" /></td>
+                            <td><a href="javascript:" class="remove-btn">Remove</a></td>
+                        </tr>
+                    </c:forEach>
+                    <tr class="status-hidden">
+                        <td><input type="text" /></td>
+                        <td><a href="javascript:" class="remove-btn">Remove</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><a href="javascript:" class="new-btn">New Field</a></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="row-fluid">
+        <div class="row-fluid field">
             <table class="table">
                 <thead>
                 <tr>
@@ -77,25 +101,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="field" items="${documentType.documentFields}">
-                    <tr class="field-tr">
-                        <td><input type="text" value="${field.name}" /></td>
+                    <c:forEach var="field" items="${documentType.documentFields}">
+                        <tr class="field-tr">
+                            <td><input type="text" value="${field.name}" /></td>
+                            <td>
+                                <form:select path="" items="${fieldTypes}"></form:select>
+                            </td>
+                            <td><a href="javascript:" class="remove-btn">Remove</a></td>
+                        </tr>
+                    </c:forEach>
+                    <tr class="field-hidden">
+                        <td><input type="text" /></td>
                         <td>
                             <form:select path="" items="${fieldTypes}"></form:select>
                         </td>
-                        <td><a href="javascript:" onclick="removeField(this);">Remove</a></td>
+                        <td><a href="javascript:" class="remove-btn">Remove</a></td>
                     </tr>
-                </c:forEach>
-                <tr class="field-hidden">
-                    <td><input type="text" /></td>
-                    <td>
-                        <form:select path="" items="${fieldTypes}"></form:select>
-                    </td>
-                    <td><a href="javascript:" onclick="removeField(this);">Remove</a></td>
-                </tr>
-                <tr>
-                    <td colspan="3"><a href="javascript:" onclick="newField();">New Field</a></td>
-                </tr>
+                    <tr>
+                        <td colspan="3"><a href="javascript:" class="new-btn">New Field</a></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

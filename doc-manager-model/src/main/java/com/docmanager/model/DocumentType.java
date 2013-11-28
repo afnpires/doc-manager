@@ -23,6 +23,9 @@ public class DocumentType {
     @OneToMany(mappedBy = "documentType")
     private List<DocumentField> documentFields;
 
+    @OneToMany(mappedBy = "documentType")
+    private List<DocumentStatus> documentStatuses;
+
     public int getId() {
         return id;
     }
@@ -61,5 +64,13 @@ public class DocumentType {
 
     public void setDocumentFields(List<DocumentField> documentFields) {
         this.documentFields = documentFields;
+    }
+
+    public List<DocumentStatus> getDocumentStatuses() {
+        return documentStatuses;
+    }
+
+    public void setDocumentStatuses(List<DocumentStatus> documentStatuses) {
+        this.documentStatuses = documentStatuses;
     }
 }

@@ -38,6 +38,8 @@ public class Document {
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
+
+
     public int getId() {
         return id;
     }
