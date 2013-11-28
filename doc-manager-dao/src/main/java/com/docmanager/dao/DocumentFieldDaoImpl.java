@@ -16,7 +16,7 @@ import java.util.List;
  * author: pserra
  */
 @Repository
-public class DocumentFieldDaoImpl implements DocumentFieldDao{
+public class DocumentFieldDaoImpl implements DocumentFieldDao {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -40,16 +40,26 @@ public class DocumentFieldDaoImpl implements DocumentFieldDao{
     @Transactional
     public DocumentField find(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from DocumentField r where r.id = :id");
+        Query query = session.createQuery("from DocumentField df where df.id = :id");
         query.setParameter("id", id);
         return (DocumentField) query.uniqueResult();
     }
 
     @Override
     @Transactional
+    public List<DocumentField> find(String name, DocumentType documentType) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from DocumentField df where df.name = :name and df.documentType = :documentType");
+        query.setParameter("name", name);
+        query.setParameter("documentType", documentType);
+        return (List<DocumentField>) query.list();
+    }
+
+    @Override
+    @Transactional
     public List<DocumentField> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from DocumentField");
+        Query query = session.createQuery("from DocumentField df");
         return (List<DocumentField>) query.list();
     }
 }
