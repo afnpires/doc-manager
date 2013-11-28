@@ -11,6 +11,16 @@
     <form:form method="post" action="/documents/add?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
         <table>
             <tr>
+                <td><label path="company"><spring:message code="document.field.company" /></label></td>
+                <td>
+                    <select name="company">
+                        <c:forEach items="${companies}" var="company">
+                            <option value="${company.id}">${company.fullName}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td><label path="name"><spring:message code="document.field.name" /></label></td>
                 <td><input type="text" name="name" /></td>
             </tr>

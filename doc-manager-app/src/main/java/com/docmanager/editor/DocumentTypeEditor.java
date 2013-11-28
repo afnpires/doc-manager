@@ -21,6 +21,7 @@ public class DocumentTypeEditor extends PropertyEditorSupport {
         this.setValue(docType);
     }
 
+    @Override
     public String getAsText() {
         DocumentType docType = (DocumentType) this.getValue();
         return docType.getName();

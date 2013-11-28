@@ -1,8 +1,11 @@
 package com.docmanager.controller;
 
+import com.docmanager.api.CompanyDao;
 import com.docmanager.api.DocumentDao;
 import com.docmanager.api.DocumentTypeDao;
+import com.docmanager.editor.CompanyEditor;
 import com.docmanager.editor.DocumentTypeEditor;
+import com.docmanager.model.Company;
 import com.docmanager.model.Document;
 import com.docmanager.model.DocumentType;
 import org.apache.commons.io.IOUtils;
@@ -22,6 +25,9 @@ import java.util.List;
 public class DocumentController {
 
     @Autowired
+    private CompanyDao companyDao;
+
+    @Autowired
     private DocumentDao documentDao;
 
     @Autowired
@@ -30,6 +36,7 @@ public class DocumentController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(DocumentType.class, new DocumentTypeEditor(documentTypeDao));
+        binder.registerCustomEditor(Company.class, new CompanyEditor(companyDao));
     }
 
     @RequestMapping(value = "/list")
@@ -41,16 +48,23 @@ public class DocumentController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(ModelMap model) {
+        List<Company> companies = companyDao.findAll();
         List<DocumentType> documentTypes = documentTypeDao.findAll();
         model.addAttribute("types", documentTypes);
+        model.addAttribute("companies", companies);
         return "document/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(ModelMap model, @RequestParam("name") String name, @RequestParam("documentType") int documentType, @RequestParam("file") MultipartFile file) {
+    public String add(ModelMap model,
+                      @RequestParam("company") Company company,
+                      @RequestParam("name") String name,
+                      @RequestParam("documentType") int documentType,
+                      @RequestParam("file") MultipartFile file) {
         try {
             DocumentType receivedDocumentType = documentTypeDao.find(documentType);
             Document document = new Document();
+            document.setCompany(company);
             document.setDocumentType(receivedDocumentType);
             document.setName(name);
             documentDao.insert(document, file);

@@ -92,13 +92,19 @@ CREATE TABLE `docmanager`.`documents` (
 	`document_type_id` INT NOT NULL,
 	`content` MEDIUMBLOB NOT NULL,
 	`content_type` VARCHAR(32) NOT NULL,
-	`creation_date` DATETIME NOT NULL, 
+	`creation_date` DATETIME NOT NULL,
+	`company_id` INT NOT NULL,
 	PRIMARY KEY(`id`),
 	INDEX `fk_document1` (`document_type_id` ASC),
 	CONSTRAINT `fk_document1`
 		FOREIGN KEY (`document_type_id`)
 		REFERENCES `docmanager`.`document_types` (`id`)
 		ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_document2`
+    FOREIGN KEY (`company_id`)
+    REFERENCES `docmanager`.`companies` (`id`)
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 

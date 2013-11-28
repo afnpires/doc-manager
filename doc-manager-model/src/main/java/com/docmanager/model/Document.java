@@ -34,6 +34,10 @@ public class Document {
     @Column(name = "creation_date", nullable = false, unique = true)
     private Date creationDate;
 
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
+
     public int getId() {
         return id;
     }
@@ -89,4 +93,8 @@ public class Document {
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
+
+    public Company getCompany() { return company; }
+
+    public void setCompany(Company company) { this.company = company; }
 }
