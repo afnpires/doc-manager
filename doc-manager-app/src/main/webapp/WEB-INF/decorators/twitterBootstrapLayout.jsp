@@ -6,8 +6,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
 
     <title><dec:title default="docmanager" /></title>
 
@@ -33,6 +33,9 @@
     <!-- See http://twitter.github.com/bootstrap/scaffolding.html#responsive -->
     <link href="/resources/css/bootstrap-responsive.min.css" rel="stylesheet" />
 
+    <script src="/resources/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="javascript"></script>
@@ -53,7 +56,7 @@
             <%--<%@include file="bootstrapMenu.jsp"%>--%>
         <%--</div>--%>
 
-        <div class="span9">
+        <div class="span7">
             <dec:body />
         </div>
 
@@ -76,8 +79,5 @@
     </footer>
 
 </div>
-
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-<script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>

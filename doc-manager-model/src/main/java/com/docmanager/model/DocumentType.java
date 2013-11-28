@@ -20,6 +20,9 @@ public class DocumentType {
     @OneToMany(mappedBy = "parent")
     private List<DocumentType> children;
 
+    @OneToMany(mappedBy = "documentType")
+    private List<DocumentField> documentFields;
+
     public int getId() {
         return id;
     }
@@ -52,4 +55,11 @@ public class DocumentType {
         this.children = children;
     }
 
+    public List<DocumentField> getDocumentFields() {
+        return documentFields;
+    }
+
+    public void setDocumentFields(List<DocumentField> documentFields) {
+        this.documentFields = documentFields;
+    }
 }

@@ -19,7 +19,7 @@ public class DocumentField {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "doc_type_id")
+    @JoinColumn(name = "document_type_id")
     private DocumentType documentType;
 
     @Column(name="field_type")

@@ -2,8 +2,6 @@ DROP DATABASE IF exists `docmanager`;
 
 CREATE DATABASE `docmanager`;
 
-USE `docmanager`;
-
 DROP TABLE IF EXISTS `docmanager`.`roles`;
 
 CREATE TABLE `docmanager`.`roles` (
@@ -44,14 +42,30 @@ ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `docmanager`.`document_types`;
 
-CREATE TABLE `document_types` (
+CREATE TABLE `docmanager`.`document_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `doc_type_fk1_idx` (`parent_id`),
-  CONSTRAINT `doc_type_fk1` FOREIGN KEY (`parent_id`) REFERENCES `document_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `doc_type_fk1` FOREIGN KEY (`parent_id`) REFERENCES `docmanager`.`document_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `docmanager`.`document_status`;
+
+CREATE TABLE `docmanager`.`document_status` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `value` VARCHAR(45) NOT NULL,
+  `document_type_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `doc_type_fk1_idx` (`document_type_id` ASC),
+  CONSTRAINT `doc_type_fk1`
+    FOREIGN KEY (`document_type_id`)
+    REFERENCES `docmanager`.`document_types` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+) ENGINE=InnoDB;
+
 
 DROP TABLE IF EXISTS `docmanager`.`document_fields`;
 
@@ -90,26 +104,17 @@ ENGINE = InnoDB;
 
 DROP TABLE IF EXISTS `docmanager`.`field_values`;
 
-CREATE TABLE `field_values` (
-  `id` int(11) NOT NULL,
+CREATE TABLE `docmanager`.`field_values` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(45) NOT NULL,
   `document_id` int(11) NOT NULL,
   `document_field_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `doc_fk1_idx` (`document_id`),
   KEY `doc_field_fk1_idx` (`document_field_id`),
-  CONSTRAINT `doc_fk1` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `doc_field_fk1` FOREIGN KEY (`document_field_id`) REFERENCES `document_fields` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `doc_fk1` FOREIGN KEY (`document_id`) REFERENCES `docmanager`.`documents` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `doc_field_fk1` FOREIGN KEY (`document_field_id`) REFERENCES `docmanager`.`document_fields` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
-
-
-CREATE TABLE `docmanager`.`status_values` (
-  `id` INT NOT NULL,
-  `group` VARCHAR(45) NOT NULL,
-  `value` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB;
-
 
 INSERT INTO `docmanager`.`roles` (`name`) VALUES ('ADMIN');
 INSERT INTO `docmanager`.`roles` (`name`) VALUES ('USER');
